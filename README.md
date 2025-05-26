@@ -25,15 +25,14 @@ The bot leverages **YandexGPT** for language understanding and generation, **Ope
 
 .
 ├── .opensearch/
-│   └── root.crt                     # CA certificate for OpenSearch
+│   └── root.crt                    # CA certificate for OpenSearch
 ├── main.py                         # Main application script for the bot
 ├── config.py                       # Configuration file for settings and paths
 ├── requirements.txt                # Python dependencies
 ├── api-credentials.json            # Credentials for YandexGPT (SAMPLE)
-├── credentials\_opensearch.json     # Credentials for OpenSearch (SAMPLE)
+├── credentials\_opensearch.json    # Credentials for OpenSearch (SAMPLE)
 ├── accessbucket.json               # Credentials for Yandex S3 (SAMPLE)
 ├── tg-credentials.json             # Credentials for Telegram Bot (SAMPLE)
-├── processed\_langchain\_docs.json   # Cached processed documents (generated)
 └── README.md                       # This file
 
 ````
@@ -55,8 +54,7 @@ The bot leverages **YandexGPT** for language understanding and generation, **Ope
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
-cd <repository-name>
+git clone https://github.com/bltvvv/rag_assistant.git
 ````
 
 Or ensure all the files listed in "Project Structure" are in your project directory.
