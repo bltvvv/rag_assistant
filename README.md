@@ -15,7 +15,6 @@ The bot leverages **YandexGPT** for language understanding and generation, **Ope
 - **Source Referencing**: Can provide links to the source documents used for answers.
 - **Feedback Mechanism**: Allows users to provide feedback on answer helpfulness.
 - **Query Preprocessing**: Includes synonym expansion and language translation (Russian/English) to improve retrieval.
-- **Deployable on Yandex Cloud**: Designed to run continuously on a Yandex Cloud Virtual Machine.
 
 ---
 
@@ -42,7 +41,7 @@ The bot leverages **YandexGPT** for language understanding and generation, **Ope
 ## Prerequisites
 
 - Python 3.9+
-- A Yandex Cloud account (for S3, YandexGPT, OpenSearch, and VM deployment)
+- A Yandex Cloud account (for S3, YandexGPT and OpenSearch)
 - A Telegram Bot Token
 - Access to an OpenSearch instance
 - Access to a Yandex S3 bucket with your knowledge base documents
@@ -169,64 +168,20 @@ Send messages to your Telegram bot and monitor console logs.
 
 ---
 
-### Running on Yandex Cloud VM (for Continuous Operation)
-
-Refer to the `telegram_bot_yc_deploy_guide.md` for full deployment steps. Key options:
-
-#### Using `nohup` (simple):
-
-```bash
-source venv/bin/activate
-nohup python3 main.py > bot.log 2>&1 &
-```
-
-#### Using `screen` (re-attachable):
-
-```bash
-screen -S telegram_bot_session
-source venv/bin/activate
-python3 main.py
-# Detach with: Ctrl+A then D
-# Re-attach with: screen -r telegram_bot_session
-```
-
-#### Using `systemd` (recommended):
-
-Set up a `systemd` service for auto-restart and log management.
-
----
-
-## Deployment to Yandex Cloud
-
-1. Prepare the project locally
-2. Create a VM in Yandex Cloud
-3. Connect via SSH
-4. Set up Python environment and install dependencies
-5. Transfer bot files
-6. Run the bot using `nohup`, `screen`, or `systemd`
-
----
-
 ## Important Notes
-
-### 🔐 Security
-
-* Use Yandex Lockbox or environment variables in production.
-* Configure firewall/security groups for VM and OpenSearch.
-
-### 💾 Data Persistence
-
-* `processed_langchain_docs.json`: speeds up future runs.
-* Chat history is currently in-memory — for persistence, use a DB (e.g., SQLite or PostgreSQL).
-
-### 💸 Costs
-
-* Monitor usage of Yandex services (VM, GPT API, OpenSearch, S3).
 
 ### ⏳ First Run Duration
 
 * Document processing, GPT calls, and indexing may take significant time initially.
 * Later runs will be faster due to caching and indexed storage.
+
+### 💾 Data Persistence
+
+* `processed_langchain_docs.json`: speeds up future runs.
+
+### 💸 Costs
+
+* Monitor usage of Yandex services (GPT API, OpenSearch, S3).
 
 ---
 
